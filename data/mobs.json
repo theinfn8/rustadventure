@@ -1,0 +1,309 @@
+[
+  {
+    "id": "translucent_red_slime",
+    "name": "Translucent Red Slime",
+    "codex": "Translucent slimes are considered the weakest of the slime family, having relatively fragile cores that make them easy to defeat. Red slimes are known for physically attacking their prey before slowly digesting it.",
+    "level": 1,
+    "max_hits": 1,
+    "treasure_code": 1,
+    "attacks": [
+      { "name": "Pseudopod Strike", "damage": 1, "damage_type": "Physical", "prep_text": "Translucent Red Slime reaches back to strike...", "rate": 50 },
+      { "name": "Slime Stomp", "damage": 1, "damage_type": "Physical", "prep_text": "Translucent Red Slime squashes down for a jump...", "rate": 50 }
+    ]
+  },
+  {
+    "id": "translucent_blue_slime",
+    "name": "Translucent Blue Slime",
+    "codex": "Translucent slimes are considered the weakest of the slime family, having relatively fragile cores that make them easy to defeat. Blue slimes are known for a small mastery of water elemental magic and prefer attacking from range.",
+    "level": 1,
+    "max_hits": 1,
+    "treasure_code": 1,
+    "attacks": [
+      { "name": "Water Jet", "damage": 1, "damage_type": "Water", "prep_text": "Translucent Blue Slime starts to bubble violently...", "rate": 50 },
+      { "name": "Water Slash", "damage": 2, "damage_type": "Water", "prep_text": "Translucent Blue Slime swirls water around inside itself...", "rate": 60 }
+    ]
+  },
+  {
+    "id": "dungeon_bat",
+    "name": "Dungeon Bat",
+    "codex": "Dungeon bats are the larger and madder cousin of the typical bat. They attack mostly by biting their opponents, but the more dangerous ones have been seen manipulating Wind Magic.",
+    "level": 1,
+    "max_hits": 2,
+    "treasure_code": 1,
+    "attacks": [
+      { "name": "Bite", "damage": 1, "damage_type": "Physical", "prep_text": "Dungeon Bat bares its fangs...", "rate": 50 },
+      { "name": "Wind Slash", "damage": 2, "damage_type": "Air", "prep_text": "A whirl of wind kicks up around Dungeon Bat...", "rate": 50 }
+    ]
+  },
+  {
+    "id": "dungeon_rat",
+    "name": "Dungeon Rat",
+    "codex": "Dungeon rats are the larger and madder cousin of the typical rat. They attack mostly by biting their opponents, but have been known to scratch with their claws.",
+    "level": 1,
+    "max_hits": 2,
+    "treasure_code": 1,
+    "attacks": [
+      { "name": "Bite", "damage": 2, "damage_type": "Physical", "prep_text": "Dungeon Rat bares its fangs...", "rate": 60 },
+      { "name": "Scratch", "damage": 2, "damage_type": "Physical", "prep_text": "Dungeon Rat readies its claws...", "rate": 60 }
+    ]
+  },
+  {
+    "id": "rock_lizard",
+    "name": "Rock Lizard",
+    "codex": "These large lizards are distant cousins of salamanders, aligned with earth. They have thick scales made of stone and possess control of Earth Magic.",
+    "level": 1,
+    "max_hits": 3,
+    "treasure_code": 1,
+    "attacks": [
+      { "name": "Bite", "damage": 2, "damage_type": "Physical", "prep_text": "Rock Lizard bares its fangs...", "rate": 50 },
+      { "name": "Tremor", "damage": 3, "damage_type": "Earth", "prep_text": "The ground at Rock Lizard's feet begins to shake...", "rate": 70 }
+    ]
+  },
+
+  {
+    "id": "cave_spider",
+    "name": "Cave Spider",
+    "codex": "Cave spiders lurk in the corners of dark passages, waiting for prey to stumble into their webs. Their bite is painful, and older spiders weave threads laced with shadow that sap the strength of anything caught in them.",
+    "level": 2,
+    "max_hits": 2,
+    "treasure_code": 2,
+    "attacks": [
+      { "name": "Bite", "damage": 2, "damage_type": "Physical", "prep_text": "Cave Spider rears up on its hind legs...", "rate": 55 },
+      { "name": "Shadow Web", "damage": 2, "damage_type": "Dark", "prep_text": "Cave Spider begins spinning strands of inky silk...", "rate": 60 }
+    ]
+  },
+  {
+    "id": "ember_beetle",
+    "name": "Ember Beetle",
+    "codex": "Ember beetles nest near underground heat vents, and their shells stay warm to the touch long after death. They snap at intruders with their mandibles and can spit globs of smoldering ash.",
+    "level": 2,
+    "max_hits": 2,
+    "treasure_code": 2,
+    "attacks": [
+      { "name": "Mandible Snap", "damage": 1, "damage_type": "Physical", "prep_text": "Ember Beetle clicks its mandibles together...", "rate": 45 },
+      { "name": "Ember Spit", "damage": 2, "damage_type": "Fire", "prep_text": "Smoke begins to curl from Ember Beetle's jaws...", "rate": 60 }
+    ]
+  },
+  {
+    "id": "goblin_scout",
+    "name": "Goblin Scout",
+    "codex": "Goblin scouts range ahead of their warbands, picking off stragglers. They carry little more than a rusty dagger and a pouch of rocks, but they are not shy about using both.",
+    "level": 2,
+    "max_hits": 3,
+    "treasure_code": 2,
+    "attacks": [
+      { "name": "Rusty Dagger", "damage": 2, "damage_type": "Physical", "prep_text": "Goblin Scout crouches low, dagger in hand...", "rate": 50 },
+      { "name": "Thrown Rock", "damage": 3, "damage_type": "Physical", "prep_text": "Goblin Scout winds up a throw...", "rate": 65 }
+    ]
+  },
+  {
+    "id": "lantern_moth",
+    "name": "Lantern Moth",
+    "codex": "Lantern moths glow with a soft inner light that lures travelers deeper into the dungeon. When threatened, they beat their great wings to stir up gusts and shed dust that flashes blindingly bright.",
+    "level": 2,
+    "max_hits": 3,
+    "treasure_code": 2,
+    "attacks": [
+      { "name": "Wing Buffet", "damage": 2, "damage_type": "Air", "prep_text": "Lantern Moth spreads its wings wide...", "rate": 50 },
+      { "name": "Blinding Dust", "damage": 3, "damage_type": "Light", "prep_text": "Lantern Moth's glow grows steadily brighter...", "rate": 65 }
+    ]
+  },
+  {
+    "id": "mud_golem",
+    "name": "Mud Golem",
+    "codex": "Mud golems are crude constructs left behind by apprentice mages, still following orders no one remembers giving. They are slow but sturdy, pounding foes with heavy fists or hurling clumps of their own earthen bodies.",
+    "level": 2,
+    "max_hits": 4,
+    "treasure_code": 2,
+    "attacks": [
+      { "name": "Mud Fist", "damage": 3, "damage_type": "Physical", "prep_text": "Mud Golem slowly raises a dripping fist...", "rate": 65 },
+      { "name": "Mud Hurl", "damage": 4, "damage_type": "Earth", "prep_text": "Mud Golem tears a clump of earth from its chest...", "rate": 80 }
+    ]
+  },
+
+  {
+    "id": "opaque_green_slime",
+    "name": "Opaque Green Slime",
+    "codex": "Opaque slimes have denser cores than their translucent cousins, making them noticeably harder to destroy. Green slimes slam into their prey with surprising force and can expel bursts of pressurized air from within.",
+    "level": 3,
+    "max_hits": 3,
+    "treasure_code": 3,
+    "attacks": [
+      { "name": "Body Slam", "damage": 3, "damage_type": "Physical", "prep_text": "Opaque Green Slime compresses itself into a tight ball...", "rate": 60 },
+      { "name": "Gale Burst", "damage": 2, "damage_type": "Air", "prep_text": "Opaque Green Slime begins to swell with air...", "rate": 50 }
+    ]
+  },
+  {
+    "id": "skeleton_warrior",
+    "name": "Skeleton Warrior",
+    "codex": "The bones of fallen adventurers, raised to guard the dungeon they died in. Skeleton warriors remember the basics of swordplay and fight with a notched blade and a battered shield.",
+    "level": 3,
+    "max_hits": 3,
+    "treasure_code": 3,
+    "attacks": [
+      { "name": "Bone Sword", "damage": 3, "damage_type": "Physical", "prep_text": "Skeleton Warrior raises its notched blade...", "rate": 55 },
+      { "name": "Shield Bash", "damage": 2, "damage_type": "Physical", "prep_text": "Skeleton Warrior hunches behind its shield...", "rate": 45 }
+    ]
+  },
+  {
+    "id": "will_o_wisp",
+    "name": "Will-o'-Wisp",
+    "codex": "Wisps are drifting motes of spirit energy that feed on the fear of the lost. They have no body to strike, instead lashing out with darting bolts of light and ghostly flame.",
+    "level": 3,
+    "max_hits": 4,
+    "treasure_code": 3,
+    "attacks": [
+      { "name": "Flicker Bolt", "damage": 3, "damage_type": "Light", "prep_text": "Will-o'-Wisp flickers erratically...", "rate": 50 },
+      { "name": "Spirit Flame", "damage": 4, "damage_type": "Fire", "prep_text": "Will-o'-Wisp flares a sickly blue...", "rate": 70 }
+    ]
+  },
+  {
+    "id": "goblin_shaman",
+    "name": "Goblin Shaman",
+    "codex": "Goblin shamans hold the warband together with superstition and a little real magic. They will whack anyone who gets too close with their staff, but their true danger is the fire they call down from afar.",
+    "level": 3,
+    "max_hits": 4,
+    "treasure_code": 3,
+    "attacks": [
+      { "name": "Staff Whack", "damage": 3, "damage_type": "Physical", "prep_text": "Goblin Shaman grips its staff with both hands...", "rate": 50 },
+      { "name": "Firebolt", "damage": 4, "damage_type": "Fire", "prep_text": "Goblin Shaman begins chanting, sparks dancing on its fingertips...", "rate": 70 }
+    ]
+  },
+  {
+    "id": "stone_gargoyle",
+    "name": "Stone Gargoyle",
+    "codex": "Gargoyles perch motionless among carved statues until prey passes beneath. They rake with stone claws, beat up gusts with their heavy wings, and drop from above with crushing force.",
+    "level": 3,
+    "max_hits": 5,
+    "treasure_code": 3,
+    "attacks": [
+      { "name": "Claw Rake", "damage": 4, "damage_type": "Physical", "prep_text": "Stone Gargoyle flexes its granite claws...", "rate": 60 },
+      { "name": "Wing Gust", "damage": 4, "damage_type": "Air", "prep_text": "Stone Gargoyle unfurls its heavy wings...", "rate": 70 },
+      { "name": "Stone Dive", "damage": 5, "damage_type": "Earth", "prep_text": "Stone Gargoyle launches itself high into the air...", "rate": 80 }
+    ]
+  },
+
+  {
+    "id": "shadow_wolf",
+    "name": "Shadow Wolf",
+    "codex": "Shadow wolves hunt the deepest levels of the dungeon, their dark fur nearly invisible against the gloom. They bite like any wolf, but can also melt into the darkness and strike from an unexpected angle.",
+    "level": 4,
+    "max_hits": 4,
+    "treasure_code": 4,
+    "attacks": [
+      { "name": "Bite", "damage": 4, "damage_type": "Physical", "prep_text": "Shadow Wolf bares its fangs with a low growl...", "rate": 55 },
+      { "name": "Shadow Pounce", "damage": 3, "damage_type": "Dark", "prep_text": "Shadow Wolf fades into the surrounding darkness...", "rate": 50 }
+    ]
+  },
+  {
+    "id": "tide_crab",
+    "name": "Tide Crab",
+    "codex": "Tide crabs thrive in the flooded caverns beneath the dungeon. Their massive pincers can crush armor, and they spray jets of brackish water to keep attackers at bay.",
+    "level": 4,
+    "max_hits": 4,
+    "treasure_code": 4,
+    "attacks": [
+      { "name": "Pincer Crush", "damage": 4, "damage_type": "Physical", "prep_text": "Tide Crab opens its massive pincer...", "rate": 60 },
+      { "name": "Bubble Spray", "damage": 3, "damage_type": "Water", "prep_text": "Tide Crab begins frothing at the mouth...", "rate": 45 }
+    ]
+  },
+  {
+    "id": "orc_brute",
+    "name": "Orc Brute",
+    "codex": "Orc brutes rely on raw strength rather than skill. They swing a massive club with little warning beyond a grunt, and when the club isn't enough, they simply charge headfirst.",
+    "level": 4,
+    "max_hits": 5,
+    "treasure_code": 4,
+    "attacks": [
+      { "name": "Club Smash", "damage": 5, "damage_type": "Physical", "prep_text": "Orc Brute hoists its club overhead...", "rate": 70 },
+      { "name": "Headbutt", "damage": 4, "damage_type": "Physical", "prep_text": "Orc Brute lowers its head and snorts...", "rate": 55 }
+    ]
+  },
+  {
+    "id": "fire_imp",
+    "name": "Fire Imp",
+    "codex": "Fire imps are small, mischievous fiends that delight in causing pain. They jab at foes with tiny pitchforks and hurl balls of hellfire, cackling all the while.",
+    "level": 4,
+    "max_hits": 5,
+    "treasure_code": 4,
+    "attacks": [
+      { "name": "Pitchfork Jab", "damage": 4, "damage_type": "Physical", "prep_text": "Fire Imp twirls its pitchfork with a cackle...", "rate": 50 },
+      { "name": "Fireball", "damage": 5, "damage_type": "Fire", "prep_text": "Fire Imp cups a growing ball of flame in its hands...", "rate": 70 }
+    ]
+  },
+  {
+    "id": "banshee",
+    "name": "Banshee",
+    "codex": "Banshees are the restless spirits of those who died in despair. Their mournful wail tears at the soul, their touch carries the chill of the grave, and the air around them howls with icy wind.",
+    "level": 4,
+    "max_hits": 6,
+    "treasure_code": 4,
+    "attacks": [
+      { "name": "Mournful Wail", "damage": 5, "damage_type": "Dark", "prep_text": "Banshee draws in a long, rattling breath...", "rate": 70 },
+      { "name": "Grave Wind", "damage": 5, "damage_type": "Air", "prep_text": "A freezing wind begins to swirl around Banshee...", "rate": 70 },
+      { "name": "Spectral Touch", "damage": 6, "damage_type": "Dark", "prep_text": "Banshee reaches out with a translucent hand...", "rate": 85 }
+    ]
+  },
+
+  {
+    "id": "ironshell_beetle",
+    "name": "Ironshell Beetle",
+    "codex": "Ironshell beetles grow carapaces as hard as forged steel by feeding on ore veins. They charge with their great horns and can burrow through solid rock to strike from below.",
+    "level": 5,
+    "max_hits": 5,
+    "treasure_code": 5,
+    "attacks": [
+      { "name": "Horn Charge", "damage": 5, "damage_type": "Physical", "prep_text": "Ironshell Beetle scrapes its legs against the floor...", "rate": 65 },
+      { "name": "Burrow Strike", "damage": 4, "damage_type": "Earth", "prep_text": "Ironshell Beetle digs rapidly into the ground...", "rate": 55 }
+    ]
+  },
+  {
+    "id": "cultist_initiate",
+    "name": "Cultist Initiate",
+    "codex": "Robed initiates of a forbidden cult, sent into the depths to prove their devotion. They are quick with a ritual dagger and have begun to learn the darker arts of their order.",
+    "level": 5,
+    "max_hits": 5,
+    "treasure_code": 5,
+    "attacks": [
+      { "name": "Ritual Dagger", "damage": 4, "damage_type": "Physical", "prep_text": "Cultist Initiate draws a curved dagger from its robes...", "rate": 50 },
+      { "name": "Dark Bolt", "damage": 5, "damage_type": "Dark", "prep_text": "Cultist Initiate whispers a forbidden incantation...", "rate": 65 }
+    ]
+  },
+  {
+    "id": "fallen_knight",
+    "name": "Fallen Knight",
+    "codex": "Once sworn protectors of the realm, fallen knights now serve whatever darkness claimed them. Their swordsmanship is still flawless, and their shield is as much a weapon as their blade.",
+    "level": 5,
+    "max_hits": 6,
+    "treasure_code": 5,
+    "attacks": [
+      { "name": "Longsword Slash", "damage": 6, "damage_type": "Physical", "prep_text": "Fallen Knight raises its longsword into a high guard...", "rate": 70 },
+      { "name": "Shield Bash", "damage": 5, "damage_type": "Physical", "prep_text": "Fallen Knight braces behind its tower shield...", "rate": 55 }
+    ]
+  },
+  {
+    "id": "storm_harpy",
+    "name": "Storm Harpy",
+    "codex": "Storm harpies nest in the high vaulted chambers of the dungeon, diving on anything below. They rake with razor talons, and their piercing shriek can summon a howling tempest.",
+    "level": 5,
+    "max_hits": 6,
+    "treasure_code": 5,
+    "attacks": [
+      { "name": "Talon Rake", "damage": 5, "damage_type": "Physical", "prep_text": "Storm Harpy circles overhead, talons extended...", "rate": 55 },
+      { "name": "Tempest Shriek", "damage": 6, "damage_type": "Air", "prep_text": "Storm Harpy throws back its head as the wind picks up...", "rate": 75 }
+    ]
+  },
+  {
+    "id": "crystal_golem",
+    "name": "Crystal Golem",
+    "codex": "Crystal golems are animated by the raw magic trapped inside their gemstone bodies. They pummel foes with crystalline fists, focus light into searing beams, and shatter shards of themselves into deadly storms.",
+    "level": 5,
+    "max_hits": 7,
+    "treasure_code": 5,
+    "attacks": [
+      { "name": "Crystal Fist", "damage": 6, "damage_type": "Physical", "prep_text": "Crystal Golem draws back a glittering fist...", "rate": 70 },
+      { "name": "Shard Storm", "damage": 6, "damage_type": "Earth", "prep_text": "Cracks spread across Crystal Golem's body...", "rate": 75 },
+      { "name": "Prism Beam", "damage": 7, "damage_type": "Light", "prep_text": "Light gathers and refracts within Crystal Golem's core...", "rate": 85 }
+    ]
+  }
+]
