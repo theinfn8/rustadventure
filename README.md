@@ -7,7 +7,7 @@ Rust adventure (RAD) is a text-based adventure game in the style of MUDs, advent
 
 ### __Installation and Running__:
 It's rust, assuming you have everything installed:
-`cargo run
+`cargo run`
 
 ### __Approach__:
 The original intent of RAD was to get some experience moving into Rust as a language and it kind of expanded from there. The initial idea I had was to work with a more MUD centric type of game, but I wanted something that would play faster and that I could just walk away from. That meant randomly generated content and a relatively short game loop. I picked a text UI framework for Rust, ratatui, to ease the process.
