@@ -6,17 +6,57 @@ use ratatui::layout::{Constraint, Layout, Margin, Spacing};
 use ratatui::symbols::merge::MergeStrategy;
 
 use crate::enemy::{Enemy, EnemyEvent};
-use crate::menus::handle_key;
+use crate::menus::{handle_key, hint_text};
 use crate::mob::DamageType;
 
 const HEART_RATE: Duration = Duration::from_millis(100);
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum AppLocation {
-    Town,
-    Dungeon,
+    Town(TownLocation),
+    Dungeon(DungeonLocation),
 }
 
+impl AppLocation {
+    /// Name used in messages, e.g. "You enter the guild."
+    pub fn name(&self) -> &'static str {
+        match self {
+            AppLocation::Town(TownLocation::TownSquare) => "town square",
+            AppLocation::Town(TownLocation::Guild) => "guild",
+            AppLocation::Town(TownLocation::Blacksmith) => "blacksmith",
+            AppLocation::Town(TownLocation::Arcanist) => "arcanist",
+            AppLocation::Town(TownLocation::Trainer) => "trainer",
+            AppLocation::Dungeon(_) => "dungeon",
+        }
+    }
+
+    /// Flavor text shown when the player arrives. `None` means no description.
+    pub fn description(&self) -> Option<&'static str> {
+        match self {
+            AppLocation::Town(TownLocation::TownSquare) => Some(
+                "Merchants shout over one another as adventurers come and go around the old fountain.",
+            ),
+            AppLocation::Town(TownLocation::Guild) => Some(
+                "Smoke hangs under the rafters. Every table holds someone you'd rather not owe money to.",
+            ),
+            AppLocation::Town(TownLocation::Blacksmith) => Some(
+                "Heat rolls out of the forge. The smith doesn't look up from the anvil.",
+            ),
+            AppLocation::Town(TownLocation::Arcanist) => Some(
+                "Shelves of glowing vials line the walls, and the air tastes faintly of copper.",
+            ),
+            AppLocation::Town(TownLocation::Trainer) => Some(
+                "The practice yard is packed dirt, battered dummies, and one very patient instructor.",
+            ),
+            AppLocation::Dungeon(DungeonLocation::Exploring) => Some(
+                "Cold, damp stone closes in around you. Somewhere ahead, something skitters.",
+            ),
+            AppLocation::Dungeon(_) => None, // fights, chests and traps describe themselves
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TownLocation {
     TownSquare,
     Guild,
@@ -25,7 +65,10 @@ pub enum TownLocation {
     Trainer,
 }
 
-pub enum EventType {
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum DungeonLocation {
+    Entrance,
+    Exploring,
     Monster,
     Treasure,
     Trap,
@@ -34,30 +77,23 @@ pub enum EventType {
 pub struct App {
     pub running: bool,
     pub location: AppLocation,
-    pub townlocation: Option<TownLocation>,
-    pub event: Option<EventType>,
     pub active_enemy: Option<Enemy>,
     pub buffer: Vec<String>,
-    pub menutext: String,
 }
 
 impl App {
     pub fn new() -> Self {
         Self {
             running: true,
-            location: AppLocation::Town,
-            townlocation: Some(TownLocation::TownSquare),
-            event: None,
+            location: AppLocation::Town(TownLocation::TownSquare),
             active_enemy: None,
             buffer: Vec::new(),
-            menutext: String::new(),
         }
     }
 
     pub fn run(&mut self, terminal: &mut DefaultTerminal) -> std::io::Result<()> {
         let mut last_heartbeat = Instant::now();
         self.buffer.push("Welcome to the adventure!".to_string());
-        self.menutext = "(G)uild || (B)lacksmith || (A)rcanist || (T)rainer || (D)ungeon || (Q)uit".to_string();
 
         while self.running {
             terminal.draw(|frame| self.render(frame))?;
@@ -85,8 +121,8 @@ impl App {
         // Add heartbeat logic here
         let mut rng = rand::rng();
 
-        let event = match self.event {
-            Some(EventType::Monster) => self
+        let event = match self.location {
+            AppLocation::Dungeon(DungeonLocation::Monster) => self
                 .active_enemy
                 .as_mut()
                 .and_then(|enemy| enemy.tick(&mut rng)),
@@ -155,47 +191,13 @@ impl App {
             .begin_symbol(None)
             .end_symbol(None);
 
-        let hintbar: Paragraph;
-        match self.location {
-            AppLocation::Town => 
-                hintbar = Paragraph::new(self.menutext.clone()).block(
-                Block::default()
-                    .borders(Borders::ALL)
-                    .title("")
-                    .merge_borders(MergeStrategy::Exact)
-                ),
-            AppLocation::Dungeon => match self.event {
-                Some(EventType::Monster) =>
-                    hintbar = Paragraph::new("(A)ttack || (R)un || (Q)uit").block(
-                    Block::default()
-                        .borders(Borders::ALL)
-                        .title("")
-                        .merge_borders(MergeStrategy::Exact)
-                ),
-                Some(EventType::Treasure) =>
-                    hintbar = Paragraph::new("(O)pen || (L)eave || (Q)uit").block(
-                    Block::default()
-                        .borders(Borders::ALL)
-                        .title("")
-                        .merge_borders(MergeStrategy::Exact)
-                ),
-                Some(EventType::Trap) =>
-                    hintbar = Paragraph::new("(D)isarm || (R)un || (Q)uit").block(
-                    Block::default()
-                        .borders(Borders::ALL)
-                        .title("")
-                        .merge_borders(MergeStrategy::Exact)
-                ),
-                None =>
-                    hintbar = Paragraph::new("E(x)plore || (E)xit || (Q)uit").block(
-                    Block::default()
-                        .borders(Borders::ALL)
-                        .title("")
-                        .merge_borders(MergeStrategy::Exact)
-                ),
-            },
-        }
-        
+        let hintbar = Paragraph::new(hint_text(self)).block(
+            Block::default()
+                .borders(Borders::ALL)
+                .merge_borders(MergeStrategy::Exact),
+        );
+
+        // Placeholder stats for now
         let stat1 = Paragraph::new("Hits: 100\nMana: 50\nLevel: 1")
             .block(
                 Block::default()

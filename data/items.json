@@ -1,0 +1,796 @@
+[
+  {
+    "id": "well_used_sword",
+    "name": "Well-Used Sword",
+    "codex": "A plain sword with a nicked edge and a loose grip. It still cuts, if not well.",
+    "level": 1,
+    "value": 8,
+    "rarity": "common",
+    "equip_to": "Weapon",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 1,
+        "damage_type": "Physical"
+      }
+    ]
+  },
+  {
+    "id": "superior_sword",
+    "name": "Superior Sword",
+    "codex": "A well-made sword with a true edge. Its balance makes fighting a little easier.",
+    "level": 2,
+    "value": 25,
+    "rarity": "common",
+    "equip_to": "Weapon",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 1,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "footmans_mace",
+    "name": "Footman's Mace",
+    "codex": "A flanged iron mace favored by town guards. Heavy enough to rattle bones.",
+    "level": 3,
+    "value": 55,
+    "rarity": "common",
+    "equip_to": "Weapon",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 2,
+        "damage_type": "Physical"
+      }
+    ]
+  },
+  {
+    "id": "balanced_rapier",
+    "name": "Balanced Rapier",
+    "codex": "A slender, quick blade. Its fine balance rewards a practiced fighter.",
+    "level": 4,
+    "value": 95,
+    "rarity": "common",
+    "equip_to": "Weapon",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 2,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "masterwork_longsword",
+    "name": "Masterwork Longsword",
+    "codex": "A smith's finest work, sharp and perfectly weighted. Hits hard and handles like a dream.",
+    "level": 5,
+    "value": 160,
+    "rarity": "common",
+    "equip_to": "Weapon",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 3,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "worn_quarterstaff",
+    "name": "Worn Quarterstaff",
+    "codex": "A long staff, smooth from years of use. Swung with both hands, it hits harder than it looks.",
+    "level": 1,
+    "value": 10,
+    "rarity": "common",
+    "equip_to": "Weapon2h",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 2,
+        "damage_type": "Physical"
+      }
+    ]
+  },
+  {
+    "id": "woodsmans_axe",
+    "name": "Woodsman's Axe",
+    "codex": "A heavy felling axe pressed into service as a weapon. The long haft gives a confident swing.",
+    "level": 2,
+    "value": 30,
+    "rarity": "common",
+    "equip_to": "Weapon2h",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 2,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "iron_warhammer",
+    "name": "Iron Warhammer",
+    "codex": "A brutal two-handed hammer. Slow to swing, but nothing shrugs off a direct hit.",
+    "level": 3,
+    "value": 65,
+    "rarity": "common",
+    "equip_to": "Weapon2h",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 4,
+        "damage_type": "Physical"
+      }
+    ]
+  },
+  {
+    "id": "steel_greataxe",
+    "name": "Steel Greataxe",
+    "codex": "A broad-bladed axe of good steel. Wielded well, it cleaves and keeps its user in control.",
+    "level": 4,
+    "value": 110,
+    "rarity": "common",
+    "equip_to": "Weapon2h",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 4,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "masterwork_greatsword",
+    "name": "Masterwork Greatsword",
+    "codex": "A towering blade forged by a master. Devastating in the hands of a trained warrior.",
+    "level": 5,
+    "value": 185,
+    "rarity": "common",
+    "equip_to": "Weapon2h",
+    "effects": [
+      {
+        "type": "damage",
+        "amount": 5,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "leather_cap",
+    "name": "Leather Cap",
+    "codex": "A simple cap of boiled leather. It won't stop a blow, but it helps you keep your guard up.",
+    "level": 1,
+    "value": 6,
+    "rarity": "common",
+    "equip_to": "Head",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "hooded_cowl",
+    "name": "Hooded Cowl",
+    "codex": "A dark wool hood. Good for keeping your head down, in more ways than one.",
+    "level": 2,
+    "value": 20,
+    "rarity": "common",
+    "equip_to": "Head",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Thievery"
+      }
+    ]
+  },
+  {
+    "id": "iron_skullcap",
+    "name": "Iron Skullcap",
+    "codex": "A dented iron cap. Wearing it makes you braver about standing your ground.",
+    "level": 3,
+    "value": 45,
+    "rarity": "common",
+    "equip_to": "Head",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "steel_helm",
+    "name": "Steel Helm",
+    "codex": "A sturdy steel helmet that turns aside glancing physical blows.",
+    "level": 4,
+    "value": 80,
+    "rarity": "common",
+    "equip_to": "Head",
+    "effects": [
+      {
+        "type": "defend",
+        "amount": 1,
+        "damage_type": "Physical"
+      }
+    ]
+  },
+  {
+    "id": "visored_helm",
+    "name": "Visored Helm",
+    "codex": "A full helm with a hinged visor. It deflects physical blows and steadies your defense.",
+    "level": 5,
+    "value": 140,
+    "rarity": "common",
+    "equip_to": "Head",
+    "effects": [
+      {
+        "type": "defend",
+        "amount": 1,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "padded_vest",
+    "name": "Padded Vest",
+    "codex": "Layers of quilted cloth stitched together. Softens physical blows a little.",
+    "level": 1,
+    "value": 12,
+    "rarity": "common",
+    "equip_to": "Chest",
+    "effects": [
+      {
+        "type": "defend",
+        "amount": 1,
+        "damage_type": "Physical"
+      }
+    ]
+  },
+  {
+    "id": "leather_jerkin",
+    "name": "Leather Jerkin",
+    "codex": "A fitted jerkin of thick leather. Absorbs physical hits and helps you hold your ground.",
+    "level": 2,
+    "value": 30,
+    "rarity": "common",
+    "equip_to": "Chest",
+    "effects": [
+      {
+        "type": "defend",
+        "amount": 1,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "studded_leather",
+    "name": "Studded Leather Armor",
+    "codex": "Leather armor reinforced with iron studs. Reliable protection against physical attacks.",
+    "level": 3,
+    "value": 55,
+    "rarity": "common",
+    "equip_to": "Chest",
+    "effects": [
+      {
+        "type": "defend",
+        "amount": 1,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "chainmail_hauberk",
+    "name": "Chainmail Hauberk",
+    "codex": "A long coat of interlocking rings. Heavy, but it stops much of a physical blow.",
+    "level": 4,
+    "value": 100,
+    "rarity": "common",
+    "equip_to": "Chest",
+    "effects": [
+      {
+        "type": "defend",
+        "amount": 2,
+        "damage_type": "Physical"
+      }
+    ]
+  },
+  {
+    "id": "scale_armor",
+    "name": "Scale Armor",
+    "codex": "Overlapping steel scales on a leather backing. Excellent against physical attacks.",
+    "level": 5,
+    "value": 170,
+    "rarity": "common",
+    "equip_to": "Chest",
+    "effects": [
+      {
+        "type": "defend",
+        "amount": 2,
+        "damage_type": "Physical"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "fingerless_gloves",
+    "name": "Fingerless Gloves",
+    "codex": "Worn wool gloves with the fingertips cut away. Good for nimble work.",
+    "level": 1,
+    "value": 5,
+    "rarity": "common",
+    "equip_to": "Hands",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Thievery"
+      }
+    ]
+  },
+  {
+    "id": "leather_gloves",
+    "name": "Leather Gloves",
+    "codex": "Sturdy gloves that give a firm grip on a weapon.",
+    "level": 2,
+    "value": 18,
+    "rarity": "common",
+    "equip_to": "Hands",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "thiefs_gloves",
+    "name": "Thief's Gloves",
+    "codex": "Thin, supple gloves favored by those who work with locks. Your fingers barely notice them.",
+    "level": 3,
+    "value": 40,
+    "rarity": "common",
+    "equip_to": "Hands",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Thievery"
+      }
+    ]
+  },
+  {
+    "id": "reinforced_gauntlets",
+    "name": "Reinforced Gauntlets",
+    "codex": "Leather gauntlets with iron plates across the knuckles. Good for both striking and blocking.",
+    "level": 4,
+    "value": 75,
+    "rarity": "common",
+    "equip_to": "Hands",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "steel_gauntlets",
+    "name": "Steel Gauntlets",
+    "codex": "Articulated steel gauntlets. They put weight behind every swing and catch blows aimed at your hands.",
+    "level": 5,
+    "value": 130,
+    "rarity": "common",
+    "equip_to": "Hands",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Combat"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "patched_trousers",
+    "name": "Patched Trousers",
+    "codex": "Heavy trousers with more patches than original cloth. Better than nothing.",
+    "level": 1,
+    "value": 5,
+    "rarity": "common",
+    "equip_to": "Legs",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "leather_breeches",
+    "name": "Leather Breeches",
+    "codex": "Supple leather breeches that protect without slowing you down.",
+    "level": 2,
+    "value": 18,
+    "rarity": "common",
+    "equip_to": "Legs",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Thievery"
+      }
+    ]
+  },
+  {
+    "id": "padded_leggings",
+    "name": "Padded Leggings",
+    "codex": "Quilted leggings that cushion your legs and let you brace against attacks.",
+    "level": 3,
+    "value": 40,
+    "rarity": "common",
+    "equip_to": "Legs",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "chain_leggings",
+    "name": "Chain Leggings",
+    "codex": "Leggings of light chain. They protect well and keep you steady in a fight.",
+    "level": 4,
+    "value": 75,
+    "rarity": "common",
+    "equip_to": "Legs",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Defense"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "plated_greaves",
+    "name": "Plated Greaves",
+    "codex": "Steel plates strapped over padded leggings. Solid footing for any fight.",
+    "level": 5,
+    "value": 125,
+    "rarity": "common",
+    "equip_to": "Legs",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 3,
+        "skill": "Defense"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "worn_boots",
+    "name": "Worn Boots",
+    "codex": "Soft-soled boots worn thin. At least they're quiet.",
+    "level": 1,
+    "value": 5,
+    "rarity": "common",
+    "equip_to": "Feet",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Thievery"
+      }
+    ]
+  },
+  {
+    "id": "soft_leather_boots",
+    "name": "Soft Leather Boots",
+    "codex": "Comfortable boots that are quiet on stone and steady underfoot.",
+    "level": 2,
+    "value": 18,
+    "rarity": "common",
+    "equip_to": "Feet",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Thievery"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "scouts_boots",
+    "name": "Scout's Boots",
+    "codex": "Light boots made for moving unseen. Every step lands softly.",
+    "level": 3,
+    "value": 40,
+    "rarity": "common",
+    "equip_to": "Feet",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Thievery"
+      }
+    ]
+  },
+  {
+    "id": "hobnailed_boots",
+    "name": "Hobnailed Boots",
+    "codex": "Heavy boots with iron-studded soles. Hard to knock off your feet.",
+    "level": 4,
+    "value": 75,
+    "rarity": "common",
+    "equip_to": "Feet",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "rangers_boots",
+    "name": "Ranger's Boots",
+    "codex": "Well-made boots of soft, oiled leather. Silent and sure-footed in any terrain.",
+    "level": 5,
+    "value": 130,
+    "rarity": "common",
+    "equip_to": "Feet",
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Thievery"
+      },
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "bandage",
+    "name": "Bandage",
+    "codex": "A strip of clean linen. Binds a small wound and restores a few hits.",
+    "level": 1,
+    "value": 3,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 3
+      }
+    ]
+  },
+  {
+    "id": "lockpick",
+    "name": "Lockpick",
+    "codex": "A single bent wire. Good for one tricky lock, adding a little to your thievery for the run.",
+    "level": 1,
+    "value": 4,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Thievery"
+      }
+    ]
+  },
+  {
+    "id": "minor_healing_potion",
+    "name": "Minor Healing Potion",
+    "codex": "A small vial of red liquid that tastes of berries. Restores some hits.",
+    "level": 2,
+    "value": 10,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 5
+      }
+    ]
+  },
+  {
+    "id": "smelling_salts",
+    "name": "Smelling Salts",
+    "codex": "A sharp, eye-watering whiff that snaps you to attention, adding to your defense for the run.",
+    "level": 2,
+    "value": 8,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 1,
+        "skill": "Defense"
+      }
+    ]
+  },
+  {
+    "id": "healing_potion",
+    "name": "Healing Potion",
+    "codex": "A sturdy vial of healing draught. Restores a fair amount of hits.",
+    "level": 3,
+    "value": 20,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 8
+      }
+    ]
+  },
+  {
+    "id": "fighters_tonic",
+    "name": "Fighter's Tonic",
+    "codex": "A bitter, fiery drink that makes your blood run hot. Adds to your combat for the run.",
+    "level": 3,
+    "value": 18,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Combat"
+      }
+    ]
+  },
+  {
+    "id": "focus_incense",
+    "name": "Focus Incense",
+    "codex": "A cone of fragrant incense that clears the mind. Adds to your arcana for the run.",
+    "level": 3,
+    "value": 18,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "skill",
+        "amount": 2,
+        "skill": "Arcana"
+      }
+    ]
+  },
+  {
+    "id": "strong_healing_potion",
+    "name": "Strong Healing Potion",
+    "codex": "A thick, dark draught. Restores a good amount of hits.",
+    "level": 4,
+    "value": 35,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 12
+      }
+    ]
+  },
+  {
+    "id": "greater_healing_potion",
+    "name": "Greater Healing Potion",
+    "codex": "A glowing crimson potion of the finest quality. Restores many hits.",
+    "level": 5,
+    "value": 55,
+    "rarity": "common",
+    "uses": 1,
+    "effects": [
+      {
+        "type": "heal",
+        "amount": 16
+      }
+    ]
+  }
+]

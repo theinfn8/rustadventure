@@ -3,6 +3,8 @@ mod app;
 mod menus;
 mod mob;
 mod enemy;
+mod skill;
+mod item;
 use crate::app::App;
 
 
