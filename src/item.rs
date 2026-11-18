@@ -7,13 +7,14 @@ use crate::skill::Skill;
 pub enum EquipLocation {
     Head,
     Chest,
-    Hands,
+    Gloves,
     Legs,
     Feet,
     Neck,
     Finger,
     Weapon,
     Weapon2h,
+    Bag,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize, Default)]
@@ -50,6 +51,7 @@ pub enum Effect {
         #[serde(default, skip_serializing_if = "Option::is_none")]
         damage_type: Option<DamageType> }, // Damage reduction for a specific type, None is all types
     Skill { amount: i32, skill: Skill }, // Add to skill
+    Capacity { slots: u32 },
     Custom { name: String },
 }
 
@@ -68,4 +70,6 @@ pub struct Item {
     pub uses: Option<u32>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub effects: Vec<Effect>,
+    #[serde(default)]
+    pub stackable: bool,
 }

@@ -381,7 +381,7 @@
     "level": 1,
     "value": 5,
     "rarity": "common",
-    "equip_to": "Hands",
+    "equip_to": "Gloves",
     "effects": [
       {
         "type": "skill",
@@ -397,7 +397,7 @@
     "level": 2,
     "value": 18,
     "rarity": "common",
-    "equip_to": "Hands",
+    "equip_to": "Gloves",
     "effects": [
       {
         "type": "skill",
@@ -413,7 +413,7 @@
     "level": 3,
     "value": 40,
     "rarity": "common",
-    "equip_to": "Hands",
+    "equip_to": "Gloves",
     "effects": [
       {
         "type": "skill",
@@ -429,7 +429,7 @@
     "level": 4,
     "value": 75,
     "rarity": "common",
-    "equip_to": "Hands",
+    "equip_to": "Gloves",
     "effects": [
       {
         "type": "skill",
@@ -450,7 +450,7 @@
     "level": 5,
     "value": 130,
     "rarity": "common",
-    "equip_to": "Hands",
+    "equip_to": "Gloves",
     "effects": [
       {
         "type": "skill",
@@ -667,7 +667,8 @@
         "type": "heal",
         "amount": 3
       }
-    ]
+    ],
+    "stackable": true
   },
   {
     "id": "lockpick",
@@ -683,7 +684,8 @@
         "amount": 1,
         "skill": "Thievery"
       }
-    ]
+    ],
+    "stackable": true
   },
   {
     "id": "minor_healing_potion",
@@ -698,7 +700,8 @@
         "type": "heal",
         "amount": 5
       }
-    ]
+    ],
+    "stackable": true
   },
   {
     "id": "smelling_salts",
@@ -714,7 +717,8 @@
         "amount": 1,
         "skill": "Defense"
       }
-    ]
+    ],
+    "stackable": true
   },
   {
     "id": "healing_potion",
@@ -729,7 +733,8 @@
         "type": "heal",
         "amount": 8
       }
-    ]
+    ],
+    "stackable": true
   },
   {
     "id": "fighters_tonic",
@@ -745,7 +750,8 @@
         "amount": 2,
         "skill": "Combat"
       }
-    ]
+    ],
+    "stackable": true
   },
   {
     "id": "focus_incense",
@@ -761,7 +767,8 @@
         "amount": 2,
         "skill": "Arcana"
       }
-    ]
+    ],
+    "stackable": true
   },
   {
     "id": "strong_healing_potion",
@@ -776,7 +783,8 @@
         "type": "heal",
         "amount": 12
       }
-    ]
+    ],
+    "stackable": true
   },
   {
     "id": "greater_healing_potion",
@@ -791,6 +799,7 @@
         "type": "heal",
         "amount": 16
       }
-    ]
+    ],
+    "stackable": true
   }
 ]

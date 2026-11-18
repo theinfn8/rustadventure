@@ -5,6 +5,10 @@ mod mob;
 mod enemy;
 mod skill;
 mod item;
+mod character;
+mod inventory;
+mod popup;
+
 use crate::app::App;
 
 
