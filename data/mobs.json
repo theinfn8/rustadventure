@@ -21,7 +21,8 @@
     "attacks": [
       { "name": "Water Jet", "damage": 1, "damage_type": "Water", "prep_text": "Translucent Blue Slime starts to bubble violently...", "rate": 50 },
       { "name": "Water Slash", "damage": 2, "damage_type": "Water", "prep_text": "Translucent Blue Slime swirls water around inside itself...", "rate": 60 }
-    ]
+    ],
+    "affinities": { "Water": "resistant" }
   },
   {
     "id": "dungeon_bat",
@@ -57,7 +58,8 @@
     "attacks": [
       { "name": "Bite", "damage": 2, "damage_type": "Physical", "prep_text": "Rock Lizard bares its fangs...", "rate": 50 },
       { "name": "Tremor", "damage": 3, "damage_type": "Earth", "prep_text": "The ground at Rock Lizard's feet begins to shake...", "rate": 70 }
-    ]
+    ],
+    "affinities": { "Physical": "resistant" }
   },
 
   {
@@ -82,7 +84,8 @@
     "attacks": [
       { "name": "Mandible Snap", "damage": 1, "damage_type": "Physical", "prep_text": "Ember Beetle clicks its mandibles together...", "rate": 45 },
       { "name": "Ember Spit", "damage": 2, "damage_type": "Fire", "prep_text": "Smoke begins to curl from Ember Beetle's jaws...", "rate": 60 }
-    ]
+    ],
+    "affinities": { "Fire": "immune" }
   },
   {
     "id": "goblin_scout",

@@ -67,6 +67,8 @@ pub struct Item {
     #[serde(default, skip_serializing_if = "Option::is_none")]
     pub equip_to: Option<EquipLocation>,
     #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub attack_rate: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
     pub uses: Option<u32>,
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub effects: Vec<Effect>,

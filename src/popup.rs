@@ -1,5 +1,5 @@
 use ratatui::layout::Constraint;
-use ratatui::style::{Style, Stylize};
+use ratatui::style::{Style};
 use ratatui::text::Line;
 use ratatui::widgets::{Block, Clear, List, ListItem, ListState};
 use ratatui::Frame;

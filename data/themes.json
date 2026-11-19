@@ -1,0 +1,51 @@
+[
+  {
+    "id": "grey_ruins",
+    "name": "Worn Grey Ruins",
+    "min_floor": 1,
+    "max_floor": 5,
+    "descriptions": [
+      "A room of worn grey brick that has seen the passage of many adventurers.",
+      "You enter a long grey corridor, its walls lined with crumbling stone.",
+      "Low grey arches divide this chamber into uneven halves.",
+      "A square chamber of rough-cut grey stone, its floor worn smooth by countless boots.",
+      "The corridor narrows here, the grey walls leaning in as if tired of standing.",
+      "A wide hall stretches ahead, broken columns of grey stone marking where a roof once stood.",
+      "This small room is little more than a gap between collapsed walls of grey brick.",
+      "Faded carvings cover the grey walls of this chamber, worn too far to read.",
+      "A long gallery of grey stone opens before you, empty alcoves set into both walls.",
+      "Half of this room has fallen in, leaving a slope of grey rubble against the far wall.",
+      "A round chamber of grey stone rises to a cracked dome overhead.",
+      "Steps lead down into a sunken grey room, their edges rounded by age.",
+      "You pass through a doorway with no door into a bare chamber of grey brick.",
+      "Grey flagstones, many cracked or missing, cover the floor of this cramped passage.",
+      "A tall, narrow room of grey stone, its upper walls lost in shadow."
+    ],
+    "highlights": [
+      "A light smell of sulfur draws your attention to a series of scorch marks, as if someone practiced a fire spell here again and again.",
+      "There's a faint smell of mold in the air.",
+      "Garbage has piled up in the corners near the walls.",
+      "Water drips steadily somewhere in the dark, each drop echoing off the stone.",
+      "A cold draft brushes past you from a crack in the wall, carrying the smell of damp earth.",
+      "The stone underfoot is slick and faintly sticky, as if something wet passed through not long ago.",
+      "A rusted sword lies snapped in two near the doorway, its hilt wrapped in rotted leather.",
+      "Somewhere above, small claws scrabble across the stone, then stop.",
+      "The air here is noticeably warmer, and smells faintly of smoke.",
+      "Someone has scratched a tally of marks into the wall, then given up partway through a row.",
+      "A sour, musky odor hangs in the air, strongest near a heap of droppings.",
+      "Faint chalk arrows on the floor point back the way you came.",
+      "A low hum seems to come from the stones themselves, felt more than heard.",
+      "Your footsteps sound strangely muffled, as if the room is swallowing the noise.",
+      "The ashes of an old campfire sit in a ring of stones, long cold.",
+      "Thick cobwebs drape the ceiling, swaying gently though you feel no breeze.",
+      "A dusty, dry smell fills the room, like old parchment left too long in the sun.",
+      "A broken lantern hangs from a hook on the wall, its glass long since shattered.",
+      "Gnawed bones are scattered across the floor, too small to be human.",
+      "The air tastes of metal, and the hair on your arms stands on end.",
+      "A thin trickle of water runs along a groove in the floor and disappears under the wall.",
+      "Bits of torn cloth are caught on a jagged stone near the floor, stained a dark brown."
+    ],
+    "stairs_description": "A narrow stair of worn grey stone spirals down into the dark. Cooler air drifts up from below.",
+    "boss_door_description": "A heavy door of iron-banded oak blocks the way forward, set deep into a wall of grey stone. Deep gouges score its surface, and the air beyond feels still and waiting."
+  }
+]

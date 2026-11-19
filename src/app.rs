@@ -12,6 +12,8 @@ use crate::mob::DamageType;
 use crate::character::Character;
 use crate::inventory::InventoryItem;
 use crate::popup::Popup;
+use crate::deck::Deck;
+use crate::dungeon_run::DungeonRun;
 
 const HEART_RATE: Duration = Duration::from_millis(100);
 
@@ -59,6 +61,9 @@ impl AppLocation {
             AppLocation::Dungeon(DungeonLocation::Exploring) => Some(
                 "Cold, damp stone closes in around you. Somewhere ahead, something skitters.",
             ),
+            AppLocation::Dungeon(DungeonLocation::Entrance) => Some(
+                "You stand at the entrance to the dungeon. Some adventurers mill about as they prepare to delve.",
+            ),
             AppLocation::Dungeon(_) => None, // fights, chests and traps describe themselves
         }
     }
@@ -81,7 +86,8 @@ pub enum DungeonLocation {
     Monster,
     Treasure,
     Trap,
-
+    BossDoor,
+    Stairs,
 }
 pub struct App {
     pub running: bool,
@@ -89,7 +95,10 @@ pub struct App {
     pub active_enemy: Option<Enemy>,
     pub buffer: Vec<String>,
     pub character: Character,
+    pub attack_cooldown: u32,
+    pub attack_cooldown_max: u32,
     pub popup: Option<Popup>,
+    pub run: Option<DungeonRun>,
 }
 
 impl App {
@@ -115,7 +124,10 @@ impl App {
             active_enemy: None,
             buffer: Vec::new(),
             character: character,
+            attack_cooldown: 0,
+            attack_cooldown_max: 0,
             popup: None,
+            run: None,
         }
     }
 
@@ -145,6 +157,8 @@ impl App {
 
     fn on_tick(&mut self) {
         // Add heartbeat logic here
+        self.attack_cooldown = self.attack_cooldown.saturating_sub(1);
+
         let mut rng = rand::rng();
 
         let event = match self.location {
@@ -181,7 +195,7 @@ impl App {
         let c = &self.character;
         let base = c.skills;
         let max = c.total_skills();
-        let current = max; // TODO: use the run's pools once DungeonRun exists
+        let current = self.run.as_ref().map_or(max, |run| run.pools);
 
         let half = (inner / 2) as usize;
         let skill_line = |name: &str, base: i32, current: i32, max: i32| {
@@ -211,13 +225,28 @@ impl App {
     /// Gold, then the bag's contents. The title shows slots used out of the maximum.
     fn inventory_widget(&self) -> Paragraph<'static> {
         let c = &self.character;
-        let mut lines = vec![Line::from(format!("Gold: {}", c.gold)), Line::from("")];
+        let gold = match &self.run {
+            Some(run) if run.gold_found > 0 => format!("Gold: {} (+{} found)", c.gold, run.gold_found),
+            _ => format!("Gold: {}", c.gold),
+        };
+        let mut lines = vec![Line::from(gold), Line::from("")];
         lines.extend(c.inventory.iter().map(|entry| Line::from(entry.label())));
         if c.inventory.is_empty() {
             lines.push(Line::from("(empty)"));
         }
         let title = format!("(I)nventory {}/{}", c.inventory.len(), c.inventory_slots());
         Paragraph::new(lines).block(Block::bordered().title(title).merge_borders(MergeStrategy::Exact))
+    }
+
+    fn attack_readiness(&self) -> Line<'static> {
+        const WIDTH: u32 = 10;
+        if self.attack_cooldown == 0 || self.attack_cooldown_max == 0 {
+            return Line::from(" Attack: ready ");
+        }
+        let done = self.attack_cooldown_max - self.attack_cooldown;
+        let filled = (done * WIDTH / self.attack_cooldown_max) as usize;
+        let bar = format!("{}{}", "■".repeat(filled), "□".repeat(WIDTH as usize - filled));
+        Line::from(format!(" Attack: {bar} "))
     }
 
     pub fn render(&mut self, frame: &mut Frame) {
@@ -267,11 +296,13 @@ impl App {
             .begin_symbol(None)
             .end_symbol(None);
 
-        let hintbar = Paragraph::new(hint_text(self)).block(
-            Block::default()
-                .borders(Borders::ALL)
-                .merge_borders(MergeStrategy::Exact),
-        );
+        let mut hint_block = Block::default()
+            .borders(Borders::ALL)
+            .merge_borders(MergeStrategy::Exact);
+        if self.location == AppLocation::Dungeon(DungeonLocation::Monster) {
+            hint_block = hint_block.title(self.attack_readiness().right_aligned());
+        }
+        let hintbar = Paragraph::new(hint_text(self)).block(hint_block);
 
         let stats_box = self.stats_widget(stats.width.saturating_sub(2));
         let attacks_box = Self::slots_widget("(A)ttack", 1);

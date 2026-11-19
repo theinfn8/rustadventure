@@ -4,8 +4,13 @@ use crate::skill::Skills;
 use crate::inventory::{Inventory, InventoryItem};
 use crate::item::{Effect, EquipLocation};
 use crate::mob::DamageType;
+use crate::combat::Damage;
 
 pub const BASE_INVENTORY_SLOTS: u32 = 4;
+pub const UNARMED_DAMAGE: u32 = 1;
+pub const UNARMED_ATTACK_RATE: u32 = 15;
+pub const ONE_HANDED_ATTACK_RATE: u32 = 20;
+pub const TWO_HANDED_ATTACK_RATE: u32 = 30;
 
 // Equip source
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -153,6 +158,7 @@ pub struct Character {
     pub gear: Equipment,
     pub inventory: Inventory,
     pub bank: Inventory,
+    pub dungeon_level: u32,
 }
 
 impl Character {
@@ -169,6 +175,7 @@ impl Character {
             gear: Equipment::default(),
             inventory: Inventory::with_slots(BASE_INVENTORY_SLOTS),
             bank: Inventory::unlimited(),
+            dungeon_level: 1,
         }
     }
 
@@ -283,6 +290,35 @@ impl Character {
             }
         }
         total
+    }
+
+    pub fn attack_rate(&self) -> u32 {
+        let Some(weapon) = &self.gear.main_hand else {
+            return UNARMED_ATTACK_RATE;
+        };
+        let item = weapon.template();
+        item.attack_rate.unwrap_or(match item.equip_to {
+            Some(EquipLocation::Weapon2h) => TWO_HANDED_ATTACK_RATE,
+            _ => ONE_HANDED_ATTACK_RATE,
+        })
+    }
+    
+    pub fn attack_damage(&self) -> Vec<Damage> {
+        let from_weapon: Vec<Damage> = self
+            .gear
+            .main_hand
+            .iter()
+            .flat_map(|weapon| weapon.template().effects.iter())
+            .filter_map(|effect| match effect {
+                Effect::Damage { amount, damage_type } => Some(Damage::new(*amount, *damage_type)),
+                _ => None,
+            })
+            .collect();
+        if from_weapon.is_empty() {
+            vec![Damage::new(UNARMED_DAMAGE, DamageType::Physical)]
+        } else {
+            from_weapon
+        }
     }
 
     pub fn defense_against(&self, damage_type: DamageType) -> u32 {

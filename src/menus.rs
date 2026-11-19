@@ -1,11 +1,12 @@
 use ratatui::crossterm::event::{KeyCode, KeyEvent, KeyEventKind};
 
 use crate::app::{App, AppLocation, TownLocation, DungeonLocation};
+use crate::combat::{Affinity, Hit};
+use crate::deck::{Deck, RoomEvent};
+use crate::dungeon_run::{DungeonRun, RunEnd};
 use crate::enemy::Enemy;
 use crate::popup::{Popup, PopupKind};
 
-// TODO: replace with the player's weapon/stats once those exist.
-const PLAYER_ATTACK_DAMAGE: u32 = 1;
 
 #[derive(Debug, Clone, Copy)]
 pub enum Action {
@@ -13,13 +14,17 @@ pub enum Action {
     /// Flavor text only (placeholder for shops, rumours, etc.).
     Message(&'static str),
     Quit,
-    Explore,
     Attack,
     Flee,
     OpenChest,
     LeaveChest,
     DisarmTrap,
     EscapeTrap,
+    EnterFloor,
+    NextRoom,
+    Descend,
+    EnterBossRoom,
+    LeaveDungeon,
     OpenInventory,
     PopupUp,
     PopupDown,
@@ -47,7 +52,7 @@ const fn go_town(loc: TownLocation) -> Action {
 
 const GLOBAL: &[Choice] = &[choice('i', "", Action::OpenInventory)];
 const BACK_TO_SQUARE: Action = go_town(TownLocation::TownSquare);
-const ENTER_DUNGEON: Action = Action::GoTo(AppLocation::Dungeon(DungeonLocation::Exploring));
+const ENTER_DUNGEON: Action = Action::GoTo(AppLocation::Dungeon(DungeonLocation::Entrance));
 
 const TOWN_SQUARE: &[Choice] = &[
     choice('g', "(G)uild", go_town(TownLocation::Guild)),
@@ -90,9 +95,27 @@ const TRAINER: &[Choice] = &[
     choice('e', "(E)xit", BACK_TO_SQUARE),
 ];
 
+const DUNGEON_ENTRANCE: &[Choice] = &[
+    choice('e', "(E)nter Floor 1", Action::EnterFloor),
+    choice('l', "(L)eave", BACK_TO_SQUARE),
+    choice('q', "(Q)uit", Action::Quit),
+];
+
 const DUNGEON_EXPLORE: &[Choice] = &[
-    choice('x', "E(x)plore", Action::Explore),
-    choice('e', "(E)xit", BACK_TO_SQUARE),
+    choice('x', "E(x)plore", Action::NextRoom),
+    choice('l', "(L)eave Dungeon", Action::LeaveDungeon),
+    choice('q', "(Q)uit", Action::Quit),
+];
+
+const DUNGEON_BOSS_DOOR: &[Choice] = &[
+    choice('e', "(E)nter", Action::EnterBossRoom),
+    choice('r', "(R)etreat", Action::LeaveDungeon),
+    choice('q', "(Q)uit", Action::Quit),
+];
+
+const DUNGEON_STAIRS: &[Choice] = &[
+    choice('d', "(D)escend", Action::Descend),
+    choice('l', "(L)eave Dungeon", Action::LeaveDungeon),
     choice('q', "(Q)uit", Action::Quit),
 ];
 
@@ -140,7 +163,9 @@ pub fn choices(app: &App) -> &'static [Choice] {
             DungeonLocation::Treasure => DUNGEON_TREASURE,
             DungeonLocation::Trap => DUNGEON_TRAP,
             DungeonLocation::Exploring => DUNGEON_EXPLORE,
-            DungeonLocation::Entrance => DUNGEON_EXPLORE,
+            DungeonLocation::Entrance => DUNGEON_ENTRANCE,
+            DungeonLocation::BossDoor => DUNGEON_BOSS_DOOR,
+            DungeonLocation::Stairs => DUNGEON_STAIRS,
         },
     }
 }
@@ -186,18 +211,40 @@ fn apply(app: &mut App, action: Action) {
         Action::GoTo(to) => go_to(app, to),
         Action::Message(text) => app.buffer.push(text.to_string()),
         Action::Quit => app.running = false,
-        Action::Explore => {
-            app.buffer.push("You venture deeper into the dungeon...".to_string());
-            start_monster_encounter(app);
+        Action::EnterFloor => start_floor(app, 1),
+        Action::NextRoom => {
+            if let Some(run) = app.run.as_mut() {
+                run.deck.clear_room();
+            }
+            enter_room(app);
+        }
+        Action::Descend => {
+            let next = app.run.as_ref().map_or(1, |run| run.floor() + 1);
+            app.buffer.push("You descend the stairs...".to_string());
+            start_floor(app, next);
+        }
+        Action::EnterBossRoom => {
+            if let Some(run) = app.run.as_mut() {
+                run.deck.clear_room(); // the door
+            }
+            enter_room(app);
+        }
+        Action::LeaveDungeon => {
+            app.buffer.push("You make your way back to the surface.".to_string());
+            end_run(app, RunEnd::Left);
         }
         Action::Attack => attack(app),
         Action::Flee => {
-            app.buffer.push("You run away from the monster.".to_string());
-            end_event(app);
+            // Running ends the run: there's no slipping past a monster to the next room.
+            app.buffer.push("You flee back toward the surface!".to_string());
+            end_run(app, RunEnd::Fled);
         }
         Action::OpenChest => {
             app.buffer.push("You open the treasure chest!".to_string());
-            // For demonstration, let's say you find gold
+            // TODO: roll on the treasure tables. For now, a fixed amount into the run's pouch.
+            if let Some(run) = app.run.as_mut() {
+                run.gold_found += 100;
+            }
             app.buffer.push("You found 100 gold!".to_string());
             end_event(app);
         }
@@ -246,9 +293,10 @@ fn go_to(app: &mut App, to: AppLocation) {
     }
     app.location = to;
     app.active_enemy = None;
- 
-    if matches!(to, AppLocation::Dungeon(_)) {
-        start_monster_encounter(app);
+
+    // Leaving the dungeon by any route ends the run; the next visit starts fresh.
+    if !matches!(to, AppLocation::Dungeon(_)) {
+        app.run = None;
     }
 }
  
@@ -258,38 +306,147 @@ fn end_event(app: &mut App) {
 }
 
 
-fn start_monster_encounter(app: &mut App) {
-    // TODO: temporary test spawn; replace with random encounter logic.
-    app.active_enemy = Enemy::spawn("translucent_red_slime");
-    match &app.active_enemy {
-        Some(enemy) => {
-            app.buffer.push(format!("A {} appears!", enemy.name()));
-            app.location = AppLocation::Dungeon(DungeonLocation::Monster);
-        }
-        None => {
-            app.buffer.push("The dungeon is eerily quiet.".to_string());
-            app.location = AppLocation::Dungeon(DungeonLocation::Exploring);
-        }
-    }
-}
-
 fn attack(app: &mut App) {
     let Some(enemy) = app.active_enemy.as_mut() else {
         end_event(app);
         return;
     };
-    enemy.take_damage(PLAYER_ATTACK_DAMAGE);
+
+    // Still recovering from the last swing: ignore the key press.
+    if app.attack_cooldown > 0 {
+        return;
+    }
+    let Some(enemy) = app.active_enemy.as_mut() else {
+        end_event(app);
+        return;
+    };
+
+    let rate = app.character.attack_rate();
+    app.attack_cooldown = rate;
+    app.attack_cooldown_max = rate;
+    
+    let hits = enemy.take_hits(&app.character.attack_damage());
+    let total: u32 = hits.iter().map(|h| h.dealt).sum();
     app.buffer.push(format!(
         "You hit the {} for {} damage! ({}/{} hits left)",
         enemy.name(),
-        PLAYER_ATTACK_DAMAGE,
+        total,
         enemy.current_hits,
         enemy.max_hits(),
     ));
+    // Only the interesting parts get their own line, so normal hits stay short.
+    for hit in &hits {
+        if let Some(line) = affinity_message(enemy.name(), hit) {
+            app.buffer.push(line);
+        }
+    }
+
     if enemy.is_dead() {
-        app.buffer.push(format!("The {} is defeated!", enemy.name()));
+        // Bosses get their own defeat text; everything else gets the generic line.
+        let boss_text = match app.run.as_ref().and_then(|run| run.deck.current()).map(|r| r.event) {
+            Some(RoomEvent::Boss(boss)) => Some(boss.defeat_text.as_str()),
+            _ => None,
+        };
+        match boss_text {
+            Some(text) => app.buffer.push(text.to_string()),
+            None => app.buffer.push(format!("The {} is defeated!", enemy.name())),
+        }
         end_event(app);
     }
+}
+
+/// A combat log line explaining an affinity, or None for a normal hit.
+fn affinity_message(name: &str, hit: &Hit) -> Option<String> {
+    let kind = hit.damage.damage_type.to_string().to_lowercase();
+    match hit.affinity? {
+        Affinity::Immune => Some(format!("The {name} is unaffected by the {kind} damage!")),
+        Affinity::Resistant => Some(format!("The {name} resists the {kind} damage.")),
+        Affinity::Weak => Some(format!("The {kind} damage strikes a weak spot!")),
+    }
+}
+
+// ---- Dungeon floors ----
+
+const BACK_TO_TOWN: AppLocation = AppLocation::Town(TownLocation::TownSquare);
+
+/// Finish the current run and return to town. A safe exit or a successful escape keeps
+/// what was found; death loses it.
+fn end_run(app: &mut App, how: RunEnd) {
+    if let Some(run) = app.run.take() {
+        match how {
+            RunEnd::Left | RunEnd::Fled => {
+                if run.gold_found > 0 {
+                    app.character.gold += run.gold_found;
+                    app.buffer.push(format!("You bring {} gold back to town.", run.gold_found));
+                }
+            }
+            RunEnd::Died => {
+                if run.gold_found > 0 {
+                    app.buffer.push(format!("The {} gold you found is lost.", run.gold_found));
+                }
+            }
+        }
+    }
+    go_to(app, BACK_TO_TOWN);
+}
+
+/// Generate a new deck for `floor` and show its first room.
+/// Starts a new run if there isn't one; otherwise the run continues onto the new floor.
+fn start_floor(app: &mut App, floor: u32) {
+    match Deck::generate(floor, &mut rand::rng()) {
+        Ok(deck) => {
+            app.buffer.push(format!("Floor {floor}: {}", deck.theme.name));
+            match app.run.as_mut() {
+                Some(run) => run.next_floor(deck),
+                None => app.run = Some(DungeonRun::new(deck, app.character.total_skills())),
+            }
+            enter_room(app);
+        }
+        Err(e) => {
+            app.buffer.push(format!("The way down is blocked. ({e})"));
+            app.location = AppLocation::Dungeon(DungeonLocation::Entrance);
+        }
+    }
+}
+
+/// Describe the current room and start its event. With no rooms left, show the stairs.
+fn enter_room(app: &mut App) {
+    let Some(deck) = app.run.as_ref().map(|run| &run.deck) else {
+        app.location = AppLocation::Dungeon(DungeonLocation::Entrance);
+        return;
+    };
+
+    let Some(room) = deck.current().copied() else {
+        // Floor cleared: the stairs appear, and the next floor becomes available.
+        let floor = deck.floor;
+        app.buffer.push(deck.stairs_description().to_string());
+        app.character.dungeon_level = app.character.dungeon_level.max(floor + 1);
+        app.location = AppLocation::Dungeon(DungeonLocation::Stairs);
+        return;
+    };
+
+    app.buffer.push(room.description.to_string());
+    if let Some(highlight) = room.highlight {
+        app.buffer.push(highlight.to_string());
+    }
+
+    let dungeon = |loc| AppLocation::Dungeon(loc);
+    app.location = match room.event {
+        RoomEvent::Empty => dungeon(DungeonLocation::Exploring),
+        RoomEvent::Monster(mob) => {
+            app.active_enemy = Some(Enemy::new(mob));
+            app.buffer.push(format!("A {} appears!", mob.name));
+            dungeon(DungeonLocation::Monster)
+        }
+        RoomEvent::Trap => dungeon(DungeonLocation::Trap),
+        RoomEvent::Treasure => dungeon(DungeonLocation::Treasure),
+        RoomEvent::BossDoor(_) => dungeon(DungeonLocation::BossDoor),
+        RoomEvent::Boss(boss) => {
+            app.active_enemy = Some(Enemy::new(&boss.mob));
+            app.buffer.push(format!("The {} rises to face you!", boss.mob.name));
+            dungeon(DungeonLocation::Monster)
+        }
+    };
 }
 
 fn open_inventory(app: &mut App) {

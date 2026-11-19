@@ -2,6 +2,8 @@ use rand::seq::IndexedRandom;
 use rand::Rng;
 use serde::{Deserialize, Serialize};
 use std::fmt;
+use std::collections::HashMap;
+use crate::combat::Affinity;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum DamageType {
@@ -58,6 +60,8 @@ pub struct Mob {
     
     pub treasure_code: u32,
     pub attacks: Vec<Attack>,
+    #[serde(default, skip_serializing_if = "HashMap::is_empty")]
+    pub affinities: HashMap<DamageType, Affinity>,
 }
 
 impl Mob {

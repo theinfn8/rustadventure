@@ -1,0 +1,55 @@
+[
+  {
+    "kind": "boss",
+    "floor": 5,
+    "room_description": "A vast chamber opens before you, its ceiling lost in darkness. Rows of thick grey pillars march into the gloom, breaking the weak torchlight into long, uneven shadows. The torches gutter and hiss in their brackets, as if ready to give out at any moment. At the far end, something large shifts.",
+    "defeat_text": "The Grey Warden staggers, its great claw scraping a final furrow across the stone. The restless robes go still and settle over it like ash. All around the chamber the shadows draw back to the walls where they belong, and the torches steady and burn bright for the first time. In the quiet that follows, you notice a stairway behind where it stood.",
+    "hints": [
+      "Long gouges run across the floor in sets of three, each mark wider than your hand.",
+      "The shadows in the corners seem to lean toward the passage ahead, like plants turned toward the sun.",
+      "A scrap of grey cloth is snagged on a jagged stone. When you look away, you'd swear it moved.",
+      "The torches here burn low and unsteady, guttering though there's no wind.",
+      "A stone column has been split from top to bottom, as if raked by something enormous.",
+      "A low, rasping breath drifts from somewhere deeper in the ruins, then fades."
+    ],
+    "mob": {
+      "id": "grey_warden",
+      "name": "Grey Warden",
+      "codex": "A hulking, hunched figure in grey robes that shift and flit of their own accord, the Grey Warden has guarded these ruins longer than anyone remembers. Its grotesquely large right hand ends in claws that rake through stone, and the shadows bend eagerly toward it, ready to strike at its command. When it rears back to crush its prey, wise adventurers brace themselves.",
+      "level": 5,
+      "max_hits": 14,
+      "treasure_code": 6,
+      "attacks": [
+        {
+          "name": "Claw Rake",
+          "damage": 5,
+          "damage_type": "Physical",
+          "prep_text": "Grey Warden drags its massive claw back across the stone...",
+          "rate": 65
+        },
+        {
+          "name": "Grasping Shadows",
+          "damage": 4,
+          "damage_type": "Dark",
+          "prep_text": "The shadows around Grey Warden stretch toward you...",
+          "rate": 55
+        },
+        {
+          "name": "Robe Lash",
+          "damage": 3,
+          "damage_type": "Air",
+          "prep_text": "Grey Warden's robes billow and snap like a sail in a gale...",
+          "rate": 45
+        },
+        {
+          "name": "Crushing Grip",
+          "damage": 8,
+          "damage_type": "Physical",
+          "prep_text": "Grey Warden rears up, its huge hand opening wide above you...",
+          "rate": 95
+        }
+      ],
+      "affinities": { "Light": "weak" }
+    }
+  }
+]

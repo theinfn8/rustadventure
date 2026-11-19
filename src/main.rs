@@ -8,6 +8,11 @@ mod item;
 mod character;
 mod inventory;
 mod popup;
+mod boss;
+mod theme;
+mod deck;
+mod combat;
+mod dungeon_run;
 
 use crate::app::App;
 

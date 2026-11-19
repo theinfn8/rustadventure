@@ -1,6 +1,8 @@
+use rand::Rng;
+
 use crate::data;
 use crate::mob::{Attack, Mob, DamageType};
-use rand::Rng;
+use crate::combat::{Damage, Hit};
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum EnemyEvent {
@@ -29,13 +31,34 @@ pub struct Enemy {
 }
 
 impl Enemy {
-    pub fn spawn(id: &str) -> Option<Self> {
-        let template = data::mob(id)?;
-        Some(Self {
+
+    pub fn new(template: &'static Mob) -> Self {
+        Self {
             template,
             current_hits: template.max_hits,
             pending: None,
-        })
+        }
+    }
+
+    /// Apply one damage component, adjusted by this mob's affinity for its type.
+    pub fn take_hit(&mut self, damage: Damage) -> Hit {
+        let affinity = self.template.affinities.get(&damage.damage_type).copied();
+        let dealt = match affinity {
+            Some(a) => a.apply(damage.amount),
+            None => damage.amount,
+        };
+        self.take_damage(dealt);
+        Hit { damage, dealt, affinity }
+    }
+
+    /// Apply every component of an attack, one at a time.
+    pub fn take_hits(&mut self, damages: &[Damage]) -> Vec<Hit> {
+        damages.iter().map(|d| self.take_hit(*d)).collect()
+    }
+    
+    /// Create a regular mob by ID from mobs.json.
+    pub fn spawn(id: &str) -> Option<Self> {
+        data::mob(id).map(Self::new)
     }
 
     pub fn name(&self) -> &str {

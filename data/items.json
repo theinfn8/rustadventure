@@ -37,6 +37,21 @@
     ]
   },
   {
+  "id": "flaming_dagger",
+  "name": "Flaming Dagger",
+  "codex": "A slim, wicked blade wreathed in a steady orange flame. The fire never seems to burn its wielder, only whatever the edge finds. Light enough to make quick, careful work of locks as well.",
+  "level": 2,
+  "value": 70,
+  "rarity": "uncommon",
+  "equip_to": "Weapon",
+  "effects": [
+    { "type": "damage", "amount": 1, "damage_type": "Physical" },
+    { "type": "damage", "amount": 1, "damage_type": "Fire" },
+    { "type": "skill", "amount": 1, "skill": "Thievery" }
+  ],
+  "attack_rate": 15
+  },
+  {
     "id": "footmans_mace",
     "name": "Footman's Mace",
     "codex": "A flanged iron mace favored by town guards. Heavy enough to rattle bones.",
