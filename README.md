@@ -12,13 +12,10 @@ It's rust, assuming you have everything installed:
 ### __Approach__:
 The original intent of RAD was to get some experience moving into Rust as a language and it kind of expanded from there. The initial idea I had was to work with a more MUD centric type of game, but I wanted something that would play faster and that I could just walk away from. That meant randomly generated content and a relatively short game loop. I picked a text UI framework for Rust, ratatui, to ease the process.
 I designed the screen split and then did the UI layout. I moved from there to the "movement" handling between locations. Then worked on adding dynamic elements with data read from JSON files into hashmaps and make the database globally accessible. Currently the core game loop functions with an example combat. The game is maybe v0.5.
+
 The current roadmap:
-Build struct for character data
-Add character related combat functions (taking damage, etc)
-Build "room" data for exploration (selected randomly)
-Select random level appropriate monsters to populate the rooms
-Grant rewards for combat completion (decide on treasure packets, XP, etc)
-Add character improvement functions (new training, skills, spells, and abilities)
-Add alternate exploration events (traps and treasure rooms)
-Add "boss fight"
-Expand dungeon data to increase the depth of the dungeon
+\
+-Grant rewards for combat completion (decide on treasure packets, XP, etc)
+-Add character improvement functions (new training, skills, spells, and abilities)
+-Add alternate exploration events (traps and treasure rooms)
+-Expand dungeon data to increase the depth of the dungeon (currently only 5 levels)
